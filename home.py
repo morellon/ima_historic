@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*
 from google.appengine.ext import db
 from models import HistoricData
-from datetime import date
+from datetime import date, timedelta
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 import logging
@@ -14,12 +14,15 @@ class MainPage(webapp.RequestHandler):
 
 class CronPage(webapp.RequestHandler):
     def get(self):
-        current_date = date.today()
-        historic_data = anbima.get_indexes(current_date)
-        data = HistoricData()
-        data.date = historic_data["IMA-B TOTAL"]["date"]
-        data.value = historic_data["IMA-B TOTAL"]["value"]
-        data.put()
+        day = timedelta(days=1)
+        today = date.today()
+        for i in range(6):
+            historic_data = anbima.get_indexes(today - i*day)
+            if "IMA-B TOTAL" in historic_data:
+                data = HistoricData()
+                data.date = historic_data["IMA-B TOTAL"]["date"]
+                data.value = historic_data["IMA-B TOTAL"]["value"]
+                data.put()
         pass
 
 application = webapp.WSGIApplication(
