@@ -7,7 +7,15 @@ handlers:
 - url: /tasks/.*
   script: home.py
   login: admin
-- url: /charts/.*
+
+- url: /charts
   static_dir: charts
+
+- url: /js
+  static_dir: js
+
+- url: /css
+  static_dir: css
+
 - url: /.*
   script: home.py
