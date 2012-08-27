@@ -4,11 +4,20 @@ var IMA = {};
 var Flotr = Flotr || {};
 
 IMA.drawChart = function() {
-    //$.getJSON('http://ima-historic.appspot.com/assets/IMA-B%20TOTAL/data', function(data) { });
-
-    var data = JSON.parse(stub_data);
     var container = document.getElementById("container");
-    Flotr.draw(container, {series:{data: data}}, {});
+
+    //var data = JSON.parse(stub_data);
+
+    $.getJSON('http://ima-historic.appspot.com/assets/IMA-B%20TOTAL/data', function(data) {
+        Flotr.draw(container, {series:{data: data}}, {
+            xaxis: {
+                mode: "time",
+                timeFormat: "%d %b",
+                timeMode: "local",
+                timeUnit: "second",
+            }
+        });
+    });
 };
 
 IMA.drawChart();
