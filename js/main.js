@@ -6,15 +6,21 @@ var Flotr = Flotr || {};
 IMA.drawChart = function() {
     var container = document.getElementById("container");
 
-    //var data = JSON.parse(stub_data);
+    // var data = JSON.parse(stub_data);
 
     $.getJSON('http://ima-historic.appspot.com/assets/IMA-B%20TOTAL/data', function(data) {
         Flotr.draw(container, {series:{data: data}}, {
+            HtmlText : false,
+            title: "IMA Historic",
             xaxis: {
+                labelsAngle: 45,
                 mode: "time",
                 timeFormat: "%d %b",
                 timeMode: "local",
                 timeUnit: "second",
+            },
+            yaxis: {
+                tickFormatter: function(n) { return parseInt(n) }
             }
         });
     });
