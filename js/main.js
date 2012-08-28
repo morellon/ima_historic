@@ -18,6 +18,7 @@ IMA.drawChart = function() {
                 timeFormat: "%d %b",
                 timeMode: "local",
                 timeUnit: "second",
+                noTicks: $(container).width()/50
             },
             yaxis: {
                 tickFormatter: function(n) { return parseInt(n) }
