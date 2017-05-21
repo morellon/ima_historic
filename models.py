@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 from google.appengine.ext import db
-import datetime, time
-from django.utils import simplejson as json
+import datetime, time, json
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):

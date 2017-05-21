@@ -8,7 +8,7 @@ IMA.drawChart = function() {
 
     // var data = JSON.parse(stub_data);
 
-    $.getJSON('http://ima-historic.appspot.com/assets/IMA-B%20TOTAL/data', function(data) {
+    $.getJSON('/assets/IMA-B%20TOTAL/data', function(data) {
         Flotr.draw(container, {series:{data: data}}, {
             HtmlText : false,
             title: "IMA Historic",

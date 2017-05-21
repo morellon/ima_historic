@@ -1,6 +1,9 @@
 import httplib, urllib, datetime
+from datetime import date, timedelta
 
-def get_indexes(date):
+def get_indexes(date=date.today()):
+    day = timedelta(days=1)
+    date = date - 1*day
     strdate = date.strftime("%d%m%Y")
     params = urllib.urlencode({'saida': 'csv', 'Idioma': 'PT', 'Dt_ref': strdate})
     headers = {
@@ -24,3 +27,5 @@ def get_indexes(date):
             "value": float(idx_parts[3].replace(".", "").replace(",", "."))
         }
     return indexes
+
+print(get_indexes())
